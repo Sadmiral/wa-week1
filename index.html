@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+
+    <script>
+      function startGame() {
+        document.turn = "x";
+        document.winner = null;
+        setTurn(document.turn + " starts the game");
+      }
+      function setTurn(trn) {
+        document.getElementById("turn").innerText = trn;
+      }
+      function nextMove(square) {
+        if (document.winner != null) {
+          setTurn("Player " + document.winner + " already won the game.");
+        } else if (square.innerText == "") {
+          square.innerText = document.turn;
+          switchTurn();
+        }
+      }
+      function switchTurn() {
+        if (checkForWinner(document.turn)) {
+          alert("Player " + document.winner + " won! ");
+        } else if (document.turn == "x") {
+          document.turn = "o";
+          setTurn("It's " + document.turn + "'s turn!");
+        } else {
+          document.turn = "x";
+          setTurn("It's " + document.turn + "'s turn!");
+        }
+      }
+      function checkRow(a, b, c, d, e, move) {
+        var result = false;
+        if (
+          getBox(a) == move &&
+          getBox(b) == move &&
+          getBox(c) == move &&
+          getBox(d) == move &&
+          getBox(e) == move
+        ) {
+          result = true;
+        }
+        return result;
+      }
+      function getBox(number) {
+        return document.getElementById("s" + number).innerText;
+      }
+
+      function checkForWinner(move) {
+        var result = false;
+        if (
+          checkRow(1, 2, 3, 4, 5, move) ||
+          checkRow(6, 7, 8, 9, 10, move) ||
+          checkRow(11, 12, 13, 14, 15, move) ||
+          checkRow(16, 17, 18, 19, 20, move) ||
+          checkRow(21, 22, 23, 24, 25, move) ||
+          checkRow(1, 6, 11, 16, 21, move) ||
+          checkRow(2, 7, 12, 17, 22, move) ||
+          checkRow(3, 8, 13, 18, 23, move) ||
+          checkRow(4, 9, 14, 19, 24, move) ||
+          checkRow(5, 10, 15, 20, 25, move) ||
+          checkRow(1, 7, 13, 19, 25, move) ||
+          checkRow(21, 17, 13, 9, 5, move)
+        ) {
+          if (move == "x") {
+            document.winner = "1";
+          } else {
+            document.winner = "2";
+          }
+          result = true;
+        }
+        return result;
+      }
+    </script>
+  </head>
+
+  <body onload="startGame();">
+    <h1 class="turn">Tic-Tac-Toe</h1>
+    <div class="turn" id="turn"></div>
+    <br />
+    <table id="board" border="1">
+      <tr>
+        <td id="s1" class="Square" onclick="nextMove(this)"></td>
+        <td id="s2" class="Square" onclick="nextMove(this)"></td>
+        <td id="s3" class="Square" onclick="nextMove(this)"></td>
+        <td id="s4" class="Square" onclick="nextMove(this)"></td>
+        <td id="s5" class="Square" onclick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td id="s6" class="Square" onclick="nextMove(this)"></td>
+        <td id="s7" class="Square" onclick="nextMove(this)"></td>
+        <td id="s8" class="Square" onclick="nextMove(this)"></td>
+        <td id="s9" class="Square" onclick="nextMove(this)"></td>
+        <td id="s10" class="Square" onclick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td id="s11" class="Square" onclick="nextMove(this)"></td>
+        <td id="s12" class="Square" onclick="nextMove(this)"></td>
+        <td id="s13" class="Square" onclick="nextMove(this)"></td>
+        <td id="s14" class="Square" onclick="nextMove(this)"></td>
+        <td id="s15" class="Square" onclick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td id="s16" class="Square" onclick="nextMove(this)"></td>
+        <td id="s17" class="Square" onclick="nextMove(this)"></td>
+        <td id="s18" class="Square" onclick="nextMove(this)"></td>
+        <td id="s19" class="Square" onclick="nextMove(this)"></td>
+        <td id="s20" class="Square" onclick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td id="s21" class="Square" onclick="nextMove(this)"></td>
+        <td id="s22" class="Square" onclick="nextMove(this)"></td>
+        <td id="s23" class="Square" onclick="nextMove(this)"></td>
+        <td id="s24" class="Square" onclick="nextMove(this)"></td>
+        <td id="s25" class="Square" onclick="nextMove(this)"></td>
+      </tr>
+    </table>
+  </body>
+</html>

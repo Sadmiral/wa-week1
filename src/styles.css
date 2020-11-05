@@ -1,0 +1,14 @@
+.Square {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: bold;
+  font-family: Verdana;
+}
+
+.turn {
+  font-family: Poor Richard;
+  font-weight: bold;
+  font-size: 22;
+}
